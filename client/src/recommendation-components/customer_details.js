@@ -57,7 +57,7 @@ class CustomerDetails extends Component {
                 for cross-sell hotel booking!
             </p>
             <div className="form-group">
-                <label>Customer ID</label>
+                <label>Case ID</label>
                 <input type="text" className="form-control"  name="customerID" 
                 onChange={this.handleChange} value = {this.state.customerID} required/>
             </div>

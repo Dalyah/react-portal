@@ -24,6 +24,7 @@ class App extends Component {
             adultsNo: '',
             kidsNo: '',
             roomsNo: '',
+            kidsAgeList: [],
             starRatingList: [], 
             guestRatingList: [], 
             propertyList: [],
@@ -94,8 +95,15 @@ class App extends Component {
                                   adultsNo = {this.state.adultsNo}
                                   kidsNo = {this.state.kidsNo}
                                   roomsNo = {this.state.roomsNo}
+                                  kidsAgeList = {this.state.kidsAgeList}
+                                  starRatingList = {this.state.starRatingList}
+                                  guestRatingList = {this.state.guestRatingList}
+                                  propertyList = {this.state.propertyList}
+                                  costList = {this.state.costList}
+                                  landmarksList = {this.state.landmarksList}
                                   activePage = {this.changeActivePage.bind(this)}
-                                  city_list = {this.getCityDetailsList.bind(this)}/>
+                                  city_list = {this.getCityDetailsList.bind(this)}
+                                  preferences_list = {this.getPreferencesList.bind(this)}/>
             case 'preferences':
               return <Preferences city = {this.state.city}
                                   starRatingList = {this.state.starRatingList}

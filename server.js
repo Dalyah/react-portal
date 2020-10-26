@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+var configObj = require("./config.json");
+// to get this value from env variables
+var env = "local"
 
 // futurebookings endpoint
 app.post('/getFutureBookingsByID', (req, res) => {
@@ -43,7 +45,39 @@ app.post('/getPropertyListByCity', (req, res) => {
         'Hostel',
         'Guesthouse',
         'Motel',
-        'Others'] });
+        'Others'], 
+    otherPropertyList: [
+        'Pension',
+        'Other',
+        'Inn',
+        'Pousada (Brazil)',
+        'Pousada (Portugal)',
+        'Townhouse',
+        'Cruise',
+        'Riad',
+        'Bed & breakfast',
+        'Safari/Tentalow',
+        'Residence',
+        'Chalet',
+        'Condo',
+        'Property',
+        'Tree house property',
+        'Houseboat',
+        'Palace',
+        'Castle',
+        'Cottage',
+        'Cabin',
+        'Lodge',
+        'Ranch',
+        'Campsite',
+        'Agritourism property',
+        'All-inclusive property',
+        'Condominium resort',
+        'Private vacation home',
+        'Country house',
+        'Ryokan',
+        'Holiday park'
+    ] });
 });
 
 // Recommendation endpoint
@@ -66,8 +100,21 @@ app.post('/validateUser', (req, res) => {
     console.log(req.body);
     username = req.body.username
     password = req.body.password
+    console.log(configObj[env])
+    validUsername = configObj[env].username
+    validPassword = configObj[env].password
     // connect to DB, check username & password
-    res.send({ validLogin: true});
+    if (username === validUsername && password === validPassword)
+    {
+        res.send({ validLogin: true});
+    }
+    else
+    {
+        res.send({ validLogin: false});
+    }
+    
+
+    
 });
 
 app.post('/api/world', (req, res) => {

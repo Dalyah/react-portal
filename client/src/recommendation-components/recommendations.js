@@ -57,7 +57,7 @@ class Recommendations extends Component {
     handleSubmit =  e => {
         e.preventDefault();
         // Forward to next page "feedback page"
-        this.props.activePage('feedback');
+        this.props.activePage('thanks');
     }
 
     handleAnotherCity = e => {

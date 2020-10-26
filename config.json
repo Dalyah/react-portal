@@ -1,0 +1,23 @@
+{
+    "local":
+    {
+        "username": "admin",
+        "password": "csreceng-portal",
+        "hive_username": "",
+        "hive_password": ""
+    },
+    "stage":
+    {
+        "username": "admin",
+        "password": "csreceng-portal",
+        "hive_username": "",
+        "hive_password": ""
+    },
+    "prod":
+    {
+        "username": "admin",
+        "password": "csreceng-portal",
+        "hive_username": "",
+        "hive_password": ""
+    }
+}
