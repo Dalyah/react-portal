@@ -13,7 +13,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activePage: 'login',
+            activePage: 'cityDetails',
             username:'',
             bookingList: [],
             customerID: '',
@@ -29,7 +29,7 @@ class App extends Component {
             guestRatingList: [], 
             propertyList: [],
             costList: [],
-            landmarksList: [],
+            landmark: '',
             booked: '',
             bookingID: '',
             cancelReasons: []
@@ -100,7 +100,7 @@ class App extends Component {
                                   guestRatingList = {this.state.guestRatingList}
                                   propertyList = {this.state.propertyList}
                                   costList = {this.state.costList}
-                                  landmarksList = {this.state.landmarksList}
+                                  landmark = {this.state.landmark}
                                   activePage = {this.changeActivePage.bind(this)}
                                   city_list = {this.getCityDetailsList.bind(this)}
                                   preferences_list = {this.getPreferencesList.bind(this)}/>
@@ -110,15 +110,15 @@ class App extends Component {
                                   guestRatingList = {this.state.guestRatingList}
                                   propertyList = {this.state.propertyList}
                                   costList = {this.state.costList}
-                                  landmarksList = {this.state.landmarksList}
+                                  landmark = {this.state.landmark}
                                   activePage = {this.changeActivePage.bind(this)}
                                   preferences_list = {this.getPreferencesList.bind(this)}/>
             case 'recommendations':
               return <Recommendations customerID = {this.state.customerID} 
                                       selectedBooking = {this.state.selectedBooking}
                                       city = {this.state.city}
+                                      dateFrom = {this.state.dateFrom}
                                       dateTo = {this.state.dateTo}
-                                      dateForm = {this.state.dateFrom}
                                       adultsNo = {this.state.adultsNo}
                                       kidsNo = {this.state.kidsNo}
                                       roomsNo = {this.state.roomsNo}
@@ -126,7 +126,7 @@ class App extends Component {
                                       guestRatingList= {this.state.guestRatingList}
                                       costList = {this.state.costList}
                                       propertyList = {this.state.propertyList}
-                                      landmarksList = {this.state.landmarksList}
+                                      landmark = {this.state.landmark}
                                       activePage = {this.changeActivePage.bind(this)}/>
             case 'feedback':
               return <Feedback activePage = {this.changeActivePage.bind(this)}

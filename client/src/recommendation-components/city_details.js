@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+const axios = require('axios')
 
 class CityDetails extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class CityDetails extends Component {
             otherPropertyList:[],
             landmarkList: [],
             propertyList: [],
+            selectedLandmark:'',
             selectedPropertyList: [],
             selectedLandmarkList: [],
             selectedStarRatingList: [],
@@ -40,7 +42,7 @@ class CityDetails extends Component {
         this.getLandmarks();
         this.getPropertyTypes();
         const {selectedBooking, city, dateFrom, dateTo, adultsNo, kidsNo, roomsNo, kidsAgeList,
-               starRatingList, guestRatingList, propertyList, costList, landmarksList} = this.props
+               starRatingList, guestRatingList, propertyList, costList, landmark} = this.props
         if (this.props.city !== ""){
             this.setState({city: city})
             this.setState({dateFrom: dateFrom})
@@ -53,7 +55,7 @@ class CityDetails extends Component {
             this.setState({selectedGuestRatingList: guestRatingList})
             this.setState({selectedCostList: costList})
             this.setState({selectedPropertyList: propertyList})
-            this.setState({selectedLandmarkList: landmarksList})
+            this.setState({selectedLandmark: landmark})
         }
     }
     handleSubmit =  e => {
@@ -80,8 +82,9 @@ class CityDetails extends Component {
             'guestRatingList' : this.state.selectedGuestRatingList , 
             'propertyList' : this.state.selectedPropertyList,
             'costList' : this.state.selectedCostList,
-            'landmarksList' : this.state.selectedLandmarkList
+            'landmark' : this.state.selectedLandmark
           };
+
         // Forward to next page 
         this.props.activePage('recommendations');
         this.props.preferences_list(prefList)
@@ -90,6 +93,11 @@ class CityDetails extends Component {
 
     handleChange = e => {
         this.setState({[e.target.name]: e.target.value})
+        //if(e.target.name === 'dateFrom' || e.target.name === 'city'  ){
+        if(e.target.name === 'dateFrom' ){
+          this.getLandmarks();
+        }
+        
     }
 
     handlePropertyChange = e => {
@@ -184,7 +192,7 @@ class CityDetails extends Component {
           this function will send API request to 
           get the landmarks based on city selected
         */
-  
+        try {
         const response = await fetch('/getLandmarksByCity', {
           method: 'POST',
           headers: {
@@ -195,7 +203,13 @@ class CityDetails extends Component {
         const body = await response.json();
         console.info(body);
         console.info(body.landmarks);
+
         this.setState({landmarkList: body.landmarks})
+      }
+      catch(error){
+        console.log(error);
+      }
+        
       }
   
       getPropertyTypes = async () => {
@@ -301,13 +315,11 @@ class CityDetails extends Component {
                     </div>
                     <div className="form-group">
                       <label><b>Close To: </b></label>
+                      <select class="form-control" onChange={this.handleChange} name="selectedLandmark">
                       {this.state.landmarkList.map((data) =>
-                      <div class="form-check form-check">
-                        <input class="form-check-input" type="checkbox" name="propertyList" 
-                        onChange={this.handleLandmarkChange} value={data}/>
-                        <label class="form-check-label" for="inlineCheckbox1">{data}</label>
-                      </div>
+                            <option>{data}</option>
                         )}
+                        </select>
                      
                   </div>
                 </section>
