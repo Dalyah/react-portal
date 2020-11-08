@@ -21,7 +21,7 @@ const conf = {
   maxpoolsize: 100,
   properties: {
     user: 'daliyah.aljamal',
-    password: 'GgU2y4tK0s#'
+    password: ''
   }
 }
 */
